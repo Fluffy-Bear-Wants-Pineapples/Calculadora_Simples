@@ -1,0 +1,54 @@
+<!-- Para criar o <head> automático, digite ! ou html:5 no início do código -->
+
+    <!DOCTYPE html>
+    <html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Calculadora com JS</title>
+        <link rel="stylesheet" href="style.css">
+
+        <script>
+            function calculadora(operacao) { // operação = valor (+, -, * ou /) que o usuário desejar
+            //parseFloat transforma caracteres diferentes em números com casas decimais
+
+            let valor1 = parseFloat(document.calc.valor1.value); 
+            let valor2 = parseFloat(document.calc.valor2.value); 
+            let result = eval(valor1 + operacao + valor2); //eval converte números para texto
+
+            document.calc.resultado.value = result;
+        }
+
+        function setFocus(){
+            //[] refere ao posicionamento do atributo, e o número dentro significa a "ordem" desse atributo
+            //no caso, ele chama ao posicionamento do primeiro formulário do site
+            document.forms[0].valor1.focus();
+            document.calc.valor1.value="";
+            document.calc.valor2.value="";
+            document.calc.resultado.value="";
+        }
+        </script>
+    </head>
+
+    <!-- onload é "quando carregado"-->
+        <body onload="setFocus()">
+            <h1>Calculadora com JS - Turma 3B</h1>
+
+    <!-- Action é usado para indicar o endereço de um servidor para encaminhar os dados
+    O Post indica que os dados são enviados "escondidos" do usuário-->
+    <form action="" name="calc" method="post"> 
+        <input type="text" name="valor1" size="20" class="Texto"/><br> <!-- O /> fecha a tag -->
+        <input type="text" name="valor2" size="20" class="Texto"/><br>
+
+        <!-- Name está vazio pois não há necessidade de colocar -->
+        <input type="button" name="" value="+" onclick="calculadora('+')" class="Botao"/> 
+        <input type="button" name="" value="-" onclick="calculadora('-')" class="Botao"/>
+        <input type="button" name="" value="*" onclick="calculadora('*')" class="Botao"/>
+        <input type="button" name="" value="/" onclick="calculadora('/')" class="Botao"/>
+
+        <br><input type="text" name="resultado" value="" size="20" readonly="true" class="Texto">
+        <!-- Readonly permite ao usuário apenas enxergar o resultado; ele não pode alterá-lo como no
+        <input type="text"> -->
+    </form>
+</body>
+</html>
